@@ -1,5 +1,30 @@
-const readline = include('readline-sync');
+const prompt = require('prompt');
 
+prompt.start();
+
+var envelopeObj = {};
+
+prompt.get(['count', 'repeat', 'height', 'flap', 'throat'], function (input)
+{
+  envelopeObj.count = input.count;
+  envelopeObj.inchRepeat = input.repeat;
+  envelopeObj.height = input.height;
+  envelopeObj.flap = input.flap;
+  envelopeObj.throat = input.throat;
+});
+
+if ((envelopeObj.height + envelopeObj.flap) <= 8.25)
+{
+  prompt.get(['numberAcross'], function (i)
+  {
+    envelopeObj.numberAcross = i.numberAcross;
+  });
+}
+else
+{
+  envelopeObj.numberAcross = 1;
+}
+/*
 var envelopeObj = 
 {
     count       : parseFloat(readline.question("Count? ")), 
@@ -14,7 +39,7 @@ if (envelopeObj.flap + envelopeObj.height < 8.25)
 else
 {
     envelopeObj.numberAcross = 1
-};
+};*/
 
 function materialRequirement(funcObj) 
 {
